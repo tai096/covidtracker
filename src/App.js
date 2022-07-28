@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./App.scss";
+import CountrySelector from "./components/CountrySelector";
+import Highlight from "./components/Hightlight";
+import Summary from "./components/Summary";
 
 function App() {
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    axios("https://api.covid19api.com/countries")
+      .then((result) => {
+        setCountries(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CountrySelector countries={countries} />
+      <Highlight />
+      <Summary />
     </div>
   );
 }
