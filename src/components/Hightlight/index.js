@@ -1,36 +1,39 @@
 export default function Highlight(props) {
   return (
     <>
-      <div className="flex my-10 justify-around items-center">
-        <div className=" w-1/5  h-50 bg-zinc-300 text-center rounded-3xl">
-          <p className="bg-yellow-400 font-bold  py-5  ">Số Ca Nhiễm</p>
+      <div className="flex flex-wrap my-10 justify-around items-center">
+        <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
+          <p className="bg-yellow-400 font-bold  py-5  ">Tổng Số Ca Nhiễm</p>
           {props.data &&
             props.data.map((data) => (
               <>
-                <p className="my-16 text-xl " key={data.ID}>
-                  {data.Confirmed}
+                <p className="my-16 text-3xl " key={data.ID}>
+                  {data.Confirmed.toString().replace(
+                    /\B(?=(\d{3})+(?!\d))/g,
+                    "."
+                  )}
                 </p>
               </>
             ))}
         </div>
-        <div className=" w-1/5 h-50 bg-zinc-300 text-center rounded-3xl">
-          <p className="bg-green-400  font-bold py-5 ">Số Ca Khỏi</p>
+        <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
+          <p className="bg-green-400  font-bold py-5 ">Số Ca Khỏi Trong Ngày</p>
           {props.data &&
             props.data.map((data) => (
               <>
-                <p className="my-16 text-xl " key={data.ID}>
+                <p className="my-16 text-3xl " key={data.ID}>
                   {data.Recovered}
                 </p>
               </>
             ))}
         </div>
-        <div className=" w-1/5 h-50 bg-zinc-300 text-center rounded-3xl">
-          <p className="bg-red-500 font-bold py-5 ">Số Ca Tử Vong</p>
+        <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
+          <p className="bg-red-500 font-bold py-5 ">Tổng Số Ca Tử Vong</p>
           {props.data &&
             props.data.map((data) => (
               <>
-                <p className="my-16 text-xl " key={data.ID}>
-                  {data.Deaths}
+                <p className="my-16 text-3xl " key={data.ID}>
+                  {data.Deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                 </p>
               </>
             ))}
