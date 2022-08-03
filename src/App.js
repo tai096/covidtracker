@@ -8,11 +8,15 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import Loading from "./components/Loading";
 import Chart from "./components/Chart";
+import NavBar from "./components/NavBar";
+import HomePage from "./components/HomePage";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedData, setSelectedData] = useState([]);
+  const [lastData, setLastData] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const notifySuccess = () =>
     toast.success("Cập nhật thành công !", {
@@ -58,16 +62,18 @@ function App() {
       setLoading(true);
 
       axios
-        .get(
-          `https://api.covid19api.com/country/${Slug}?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z`
-        )
+        .get(`https://api.covid19api.com/dayone/country/${Slug}`)
         .then((res) => {
           const last = res.data.pop();
+          const lineChartData = res.data.slice(res.data.length - 10);
           if (res.data.pop() !== undefined) {
-            setSelectedData(res.data);
+            setLastData([last]);
+            setSelectedData(lineChartData);
             console.log(last);
+            console.log(lineChartData);
             notifySuccess();
           } else {
+            setLastData([]);
             setSelectedData([]);
             notifyError();
           }
@@ -81,6 +87,8 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
+      <HomePage />
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -92,7 +100,7 @@ function App() {
         draggable
         pauseOnHover={false}
       />
-      <Header />
+      <Header date={lastData} />
       <CountrySelector
         countries={countries}
         onChange={handleOnChange}
@@ -102,7 +110,7 @@ function App() {
         <Loading />
       ) : (
         <>
-          <Highlight data={selectedData} />
+          <Highlight data={lastData} />
           <Chart data={selectedData} />
         </>
       )}

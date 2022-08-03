@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import moment from "moment";
 
 ChartJS.register(
   CategoryScale,
@@ -21,52 +22,65 @@ ChartJS.register(
 );
 
 export default function Chart(props) {
-  const labels = [
-    "Tổng Số Ca Nhiễm",
-    "Số Ca Khỏi Trong Ngày",
-    "Tổng Số Ca Tử Vong",
-    "Tổng Số Ca Tử Vong",
-    "Tổng Số Ca Tử Vong",
-  ];
   const confirmed = props.data.map((item) => item.Confirmed);
-  const recovered = props.data.map((item) => item.Recovered);
   const deaths = props.data.map((item) => item.Deaths);
+  const date = props.data.map((item) => moment(item.Date).format("DD/MM/YYYY"));
 
   const options = {
     responsive: true,
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
+    stacked: false,
     plugins: {
-      legend: {
-        position: "top",
-      },
       title: {
         display: true,
-        text: "Biểu đồ Covid-19",
+        text: "Số liệu Covid-19 trong 10 ngày gần nhất",
+      },
+    },
+    scales: {
+      y: {
+        type: "linear",
+        display: true,
+        position: "left",
+        color: "#fff",
+      },
+      y1: {
+        color: "#fff",
+
+        type: "linear",
+        display: true,
+        position: "right",
+        grid: {
+          drawOnChartArea: false,
+        },
       },
     },
   };
+  const labels = date;
   const data = {
     labels,
     datasets: [
       {
-        label: "Số ca nhiễm",
+        label: "Số ca mắc",
         data: confirmed,
-        backgroundColor: "rgb(250 204 21)",
-      },
-      {
-        label: "Số ca khỏi",
-        data: recovered,
-        backgroundColor: "rgb(74 222 128)",
+        borderColor: "rgb(253 224 71)",
+        backgroundColor: "rgba(250 ,204 ,21, 0.4)",
+        yAxisID: "y",
       },
       {
         label: "Số ca tử vong",
         data: deaths,
-        backgroundColor: "rgb(239 68 68)",
+        borderColor: "rgba(248, 113, 113)",
+        backgroundColor: "rgba(248, 113, 113, 0.5)",
+        yAxisID: "y1",
       },
     ],
   };
 
   return (
-    <div className=" bg-white mx-44 mt-44 ">
+    <div className=" bg-blue-100 bg-opacity-80 mx-44 mt-44 p-8 ">
       <Line options={options} data={data} />
     </div>
   );

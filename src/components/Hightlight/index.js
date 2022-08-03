@@ -1,9 +1,9 @@
 export default function Highlight(props) {
   return (
     <>
-      <div className="flex flex-wrap my-10 justify-around items-center">
+      <div className="flex flex-wrap my-20 justify-around items-center">
         <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
-          <p className="bg-yellow-400 font-bold  py-5  ">Tổng Số Ca Nhiễm</p>
+          <p className="bg-yellow-300 font-bold  py-5  ">Tổng Số Ca Nhiễm</p>
           {props.data &&
             props.data.map((data) => (
               <>
@@ -28,7 +28,7 @@ export default function Highlight(props) {
             ))}
         </div>
         <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
-          <p className="bg-red-500 font-bold py-5 ">Tổng Số Ca Tử Vong</p>
+          <p className="bg-red-400 font-bold py-5 ">Tổng Số Ca Tử Vong</p>
           {props.data &&
             props.data.map((data) => (
               <>
