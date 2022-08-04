@@ -80,7 +80,7 @@ export default function Chart(props) {
   };
 
   return (
-    <div className=" bg-blue-100 bg-opacity-80 mx-44 mt-44 p-8 ">
+    <div className=" mx-44 my-44 p-8 ">
       <Line options={options} data={data} />
     </div>
   );

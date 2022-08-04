@@ -8,7 +8,7 @@ export default function Loading() {
         <div class="middle"></div>
         <div class="inner"></div>
       </div>
-      <p className="text-white text-xl mt-20">Loading...</p>
+      <p className="text-4xl font-bold text-rose-400">Loading...</p>
     </div>
   );
 }

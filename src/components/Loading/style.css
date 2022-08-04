@@ -1,18 +1,14 @@
 .loader {
-  /* position: absolute; */
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  /* height: 1000px; */
+  /* position: fixed; */
+  /* bottom: 0; */
 }
 
 .outer,
 .middle,
 .inner {
   border: 3px solid transparent;
-  border-top-color: #9fffff;
-  border-right-color: #3cefff;
+  border-top-color: #ef233c;
+  border-right-color: #ef233c;
   border-radius: 50%;
   position: absolute;
   top: 50%;
