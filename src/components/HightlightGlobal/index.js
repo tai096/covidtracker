@@ -1,6 +1,7 @@
 export default function Highlight(props) {
   return (
     <>
+      {/* Quốc Gia */}
       <div className="flex flex-wrap my-20 justify-around items-center">
         <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
           <p className="bg-yellow-300 font-bold  py-5  ">Tổng Số Ca Nhiễm</p>

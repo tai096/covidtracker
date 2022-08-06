@@ -23,7 +23,7 @@ export default function NavBar() {
             to="/tracker"
             className="text-green-900 font-semibold text-lg transition duration-300 ease-in-out hover:text-rose-400 cursor-pointer"
           >
-            Số liệu
+            Số liệu Thống Kê
           </Link>
         </div>
       </div>

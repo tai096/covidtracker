@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CountrySelector from "../CountrySelector";
-import Highlight from "../Hightlight";
+import HightlightCountry from "../HightlightCountry";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -61,8 +61,8 @@ export default function TrackerPage() {
       axios
         .get(`https://api.covid19api.com/dayone/country/${Slug}`)
         .then((res) => {
-          const last = res.data.pop();
           const lineChartData = res.data.slice(res.data.length - 10);
+          const last = res.data.pop();
           if (res.data.pop() !== undefined) {
             setLastData([last]);
             setSelectedData(lineChartData);
@@ -104,7 +104,7 @@ export default function TrackerPage() {
         <Loading />
       ) : (
         <>
-          <Highlight data={lastData} />
+          <HightlightCountry data={lastData} />
           <Chart data={selectedData} />
         </>
       )}
