@@ -5,8 +5,8 @@ export default function Header(props) {
 
   return (
     <div className="flex flex-col items-center justify-center py-14 ">
-      <h1 className="text-6xl">Số liệu COVID-19</h1>
-      <h3 className="mt-4 text-xl">{date}</h3>
+      <h1 className="text-3xl lg:text-6xl sm:text-5xl">Số liệu COVID-19</h1>
+      <h3 className="mt-4 lg:text-xl ">{date}</h3>
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function HightlightCountry(props) {
               </>
             ))}
         </div>
-        <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 text-center rounded-3xl">
+        <div className=" w-64 h-50 bg-zinc-300 bg-opacity-70 my-10 text-center rounded-3xl">
           <p className="bg-green-400  font-bold py-5 ">Số Ca Khỏi Trong Ngày</p>
           {props.data &&
             props.data.map((data) => (

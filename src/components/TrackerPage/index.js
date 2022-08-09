@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "../Header";
 import Loading from "../Loading";
 import Chart from "../Chart";
+import HightlightGlobal from "../HightlightGlobal";
 
 export default function TrackerPage() {
   const [countries, setCountries] = useState([]);
@@ -14,6 +15,9 @@ export default function TrackerPage() {
   const [selectedData, setSelectedData] = useState([]);
   const [lastData, setLastData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [globalTotalConfirmed, setGlobalTotalConfirmed] = useState(0);
+  const [globalTotalDeaths, setGlobalTotalDeaths] = useState(0);
+  const [globalNewDeaths, setGlobaNewDeaths] = useState(0);
 
   const notifySuccess = () =>
     toast.success("Cập nhật thành công !", {
@@ -42,6 +46,16 @@ export default function TrackerPage() {
   };
 
   useEffect(() => {
+    axios.get("https://api.covid19api.com/summary").then((res) => {
+      setGlobalTotalConfirmed(res.data.Global.TotalConfirmed);
+      setGlobalTotalDeaths(res.data.Global.TotalDeaths);
+      setGlobaNewDeaths(res.data.Global.NewDeaths);
+    }).catch = (err) => {
+      console.log(err);
+    };
+  }, [globalTotalConfirmed, globalTotalDeaths]);
+
+  useEffect(() => {
     axios.get("https://api.covid19api.com/countries").then((result) => {
       setCountries(result.data);
       setSelectedCountry("VN");
@@ -66,8 +80,8 @@ export default function TrackerPage() {
           if (res.data.pop() !== undefined) {
             setLastData([last]);
             setSelectedData(lineChartData);
-            console.log(last);
-            console.log(res.data);
+            // console.log(last);
+            // console.log(res.data);
             notifySuccess();
           } else {
             setLastData([]);
@@ -95,6 +109,11 @@ export default function TrackerPage() {
         pauseOnHover={false}
       />
       <Header date={lastData} />
+      <HightlightGlobal
+        totalConfirmed={globalTotalConfirmed}
+        totalDeaths={globalTotalDeaths}
+        newDeaths={globalNewDeaths}
+      />
       <CountrySelector
         countries={countries}
         onChange={handleOnChange}
