@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.229bc833.css",
+    "main.js": "/static/js/main.303ee1c3.js",
+    "static/media/socialDistance.png": "/static/media/socialDistance.3194f78f33c7169e6405.png",
+    "static/media/symptoms.png": "/static/media/symptoms.a10990179b50158d10a2.png",
+    "static/media/whatIsCovid.png": "/static/media/whatIsCovid.ed3d054d048a8a7ebee9.png",
+    "static/media/report.png": "/static/media/report.c48bc40ee7f381d645d9.png",
+    "static/media/manyPeople.png": "/static/media/manyPeople.6076ca1130aaea4068c2.png",
+    "static/media/girl1.png": "/static/media/girl1.9fbf82754d48321401fc.png",
+    "static/media/girl2.png": "/static/media/girl2.f152df46d5af1249e31d.png",
+    "static/media/airTransmission.png": "/static/media/airTransmission.40ea5b189786bff08b61.png",
+    "static/media/containedObject.png": "/static/media/containedObject.39579330cacb59b91c2f.png",
+    "static/media/humanContact.png": "/static/media/humanContact.36dbf392a9e6978271fd.png",
+    "index.html": "/index.html",
+    "main.229bc833.css.map": "/static/css/main.229bc833.css.map",
+    "main.303ee1c3.js.map": "/static/js/main.303ee1c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.229bc833.css",
+    "static/js/main.303ee1c3.js"
+  ]
+}

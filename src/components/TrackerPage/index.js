@@ -20,15 +20,10 @@ export default function TrackerPage() {
   const [globalTotalConfirmed, setGlobalTotalConfirmed] = useState(0);
   const [globalTotalDeaths, setGlobalTotalDeaths] = useState(0);
   const [globalNewDeaths, setGlobaNewDeaths] = useState(0);
-
-  const [windowWidth, setwindowWidth] = useState({
-    winWidth: window.innerWidth,
-  });
+  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
 
   const detectSize = () => {
-    setwindowWidth({
-      winWidth: window.innerWidth,
-    });
+    setwindowWidth(window.innerWidth);
   };
 
   useEffect(() => {
@@ -149,7 +144,7 @@ export default function TrackerPage() {
       ) : (
         <>
           <HightlightCountry data={lastData} />
-          {windowWidth.winWidth > 599 ? <Chart data={selectedData} /> : <></>}
+          {windowWidth > 599 ? <Chart data={selectedData} /> : <></>}
         </>
       )}
     </motion.div>
