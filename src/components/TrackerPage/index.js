@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-import CountrySelector from "../CountrySelector";
-import HightlightCountry from "../HightlightCountry";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import CountrySelector from "../CountrySelector";
+import HightlightCountry from "../HightlightCountry";
 import Header from "../Header";
 import Loading from "../Loading";
 import Chart from "../Chart";
@@ -57,6 +56,7 @@ export default function TrackerPage() {
     });
 
   const handleOnChange = (e) => {
+    console.log(e.target.value);
     setSelectedCountry(e.target.value);
   };
 
@@ -84,7 +84,7 @@ export default function TrackerPage() {
       const { Slug } = countries.find(
         (country) => country.ISO2 === selectedCountry
       );
-      console.log("Slug:", Slug);
+      // console.log("Slug:", Slug);
       setLoading(true);
 
       axios

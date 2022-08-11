@@ -4,6 +4,7 @@ import img from "../../assets/img/whatIsCovid.png";
 
 export default function HomePage() {
   let navigate = useNavigate();
+
   return (
     <>
       <motion.div

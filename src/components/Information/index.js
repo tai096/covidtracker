@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 import airTransmission from "../../assets/img/airTransmission.png";
 import humanContact from "../../assets/img/humanContact.png";
 import containedObject from "../../assets/img/containedObject.png";
@@ -7,20 +9,19 @@ import girl02 from "../../assets/img/girl2.png";
 import socialDistance from "../../assets/img/socialDistance.png";
 import manyPeople from "../../assets/img/manyPeople.png";
 import report from "../../assets/img/report.png";
-import { useState } from "react";
-import { motion } from "framer-motion";
 
 export default function Information() {
   const [showContagtion, setShowContagtion] = useState(false);
+  const [showSymptoms, setShowSymptoms] = useState(false);
+  const [showPrevention, setShowPrevention] = useState(false);
+
   const handleOnClickContagtion = () => {
     setShowContagtion(!showContagtion);
   };
-  const [showSymptoms, setShowSymptoms] = useState(false);
   const handleOnClickSymptoms = () => {
     setShowSymptoms(!showSymptoms);
   };
-  const [showPrevention, setShowPrevention] = useState(false);
-  const handleOnClick = () => {
+  const handleOnClickPrevention = () => {
     setShowPrevention(!showPrevention);
   };
 
@@ -128,7 +129,7 @@ export default function Information() {
 
         <div className="mt-20 flex flex-col lg:text-left items-center">
           <h1
-            onClick={handleOnClick}
+            onClick={handleOnClickPrevention}
             className="cursor-pointer font-bold text-3xl lg:text-4xl text-green-900 transition duration-300 ease-in-out hover:text-rose-400"
           >
             Biện pháp phòng ngừa

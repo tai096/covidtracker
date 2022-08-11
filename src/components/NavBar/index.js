@@ -5,14 +5,10 @@ import logo from "../../assets/img/Logo.png";
 
 export default function NavBar() {
   const [menuMobie, setMenuMobie] = useState(false);
-  const [windowWidth, setwindowWidth] = useState({
-    winWidth: window.innerWidth,
-  });
+  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
 
   const detectSize = () => {
-    setwindowWidth({
-      winWidth: window.innerWidth,
-    });
+    setwindowWidth(window.innerWidth);
   };
 
   useEffect(() => {
@@ -31,7 +27,7 @@ export default function NavBar() {
     <>
       <div className="py-7 px-9 flex items-center justify-between">
         <img src={logo} alt="Hình ảnh" className="w-32 sm:w-52" />
-        {windowWidth.winWidth < 769 ? (
+        {windowWidth < 769 ? (
           <button
             className="z-20 hover:bg-slate-200 transition duration-300 ease-in-out rounded-full p-3 "
             onClick={turnOnMenu}
