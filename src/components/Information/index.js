@@ -8,32 +8,59 @@ import socialDistance from "../../assets/img/socialDistance.png";
 import manyPeople from "../../assets/img/manyPeople.png";
 import report from "../../assets/img/report.png";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Information() {
-  const [show, setShow] = useState(false);
+  const [showContagtion, setShowContagtion] = useState(false);
+  const handleOnClickContagtion = () => {
+    setShowContagtion(!showContagtion);
+  };
+  const [showSymptoms, setShowSymptoms] = useState(false);
+  const handleOnClickSymptoms = () => {
+    setShowSymptoms(!showSymptoms);
+  };
+  const [showPrevention, setShowPrevention] = useState(false);
   const handleOnClick = () => {
-    setShow(!show);
+    setShowPrevention(!showPrevention);
   };
 
   return (
     <>
-      <div className="my-32 px-10 flex flex-col items-center justify-between text-center ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        className="my-32 px-10 flex flex-col items-center justify-between text-center "
+      >
         {/* CONTAGION */}
 
         <div className="flex flex-col items-center">
           <h1
-            onClick={handleOnClick}
+            onClick={handleOnClickContagtion}
             className="cursor-pointer font-bold text-3xl text-green-900 transition duration-300 ease-in-out hover:text-rose-400 lg:text-4xl"
           >
             Cách virus lây lan
           </h1>
-          {show ? (
+          {showContagtion ? (
             <>
-              <p className="max-w-3xl w-4/5 text-center text-base lg:text-xl my-9">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2 }}
+                className="max-w-3xl w-4/5 text-center text-base lg:text-xl my-9"
+              >
                 Virus Corona là virus gây viêm đường hô hấp cấp ở người và có
                 tốc độ lây lan nhanh chóng, trở thành đại dịch toàn cầu.
-              </p>
-              <div className="flex flex-col items-center justify-around w-5/6 lg:flex-row">
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: "-20%" }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: "-20%" }}
+                transition={{ duration: 0.8 }}
+                className="flex flex-col items-center justify-around w-5/6 lg:flex-row"
+              >
                 <div className="cursor-pointer border-b-8 border-b-white flex flex-col items-center mb-20 w-72 justify-center h-96 px-5 shadow-xl transition duration-700 ease-in-out hover:shadow-2xl hover:border-b-8 hover:border-rose-500">
                   <img className="w-44" src={airTransmission} />
                   <h3 className="my-4 text-lg text-center w-48 mx-8 font-bold text-rose-400">
@@ -52,7 +79,7 @@ export default function Information() {
                     Tiếp Xúc Với Các Bề Mặt, Đồ Vật Mang Mầm Bệnh
                   </h3>
                 </div>
-              </div>
+              </motion.div>
             </>
           ) : (
             <></>
@@ -63,21 +90,34 @@ export default function Information() {
 
         <div className="mt-20 flex flex-col items-center">
           <h1
-            onClick={handleOnClick}
+            onClick={handleOnClickSymptoms}
             className="cursor-pointer font-bold text-3xl text-green-900 transition duration-300 ease-in-out hover:text-rose-400 lg:text-4xl"
           >
             Triệu chứng
           </h1>
-          {show ? (
+          {showSymptoms ? (
             <>
-              <p className="max-w-2xl text-center text-base my-9 lg:text-xl">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2 }}
+                className="max-w-2xl text-center text-base my-9 lg:text-xl"
+              >
                 COVID-19 tác động đến mỗi người theo những cách khác nhau. Hầu
                 hết người mắc bệnh COVID-19 sẽ gặp các triệu chứng từ nhẹ đến
                 trung bình và hồi phục mà không cần phải điều trị đặc biệt. Tuy
                 nhiên, một số người sẽ chuyển bệnh nghiêm trọng và cần được hỗ
                 trợ y tế.
-              </p>
-              <img src={symptoms} className="w-auto lg:w-3/4" />
+              </motion.p>
+              <motion.img
+                initial={{ opacity: 0, y: "-20%" }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: "-20%" }}
+                transition={{ duration: 1 }}
+                src={symptoms}
+                className="w-auto lg:w-3/4"
+              />
             </>
           ) : (
             <></>
@@ -93,13 +133,19 @@ export default function Information() {
           >
             Biện pháp phòng ngừa
           </h1>
-          {show ? (
+          {showPrevention ? (
             <>
-              <p className="max-w-2xl text-center my-8 lg:text-xl">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                className="max-w-2xl text-center my-8 lg:text-xl"
+              >
                 Bảo vệ bản thân và mọi người xung quanh bằng cách tìm hiểu thông
                 tin và thực hiện các biện pháp phòng ngừa thích hợp. Làm theo
                 khuyến cáo của cơ quan y tế địa phương.
-              </p>
+              </motion.p>
               <div className="flex flex-col  lg:flex-row items-center justify-between my-14">
                 <div>
                   <h1 className="font-bold text-2xl lg:text-3xl text-green-900">
@@ -167,7 +213,7 @@ export default function Information() {
             <></>
           )}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

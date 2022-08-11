@@ -5,12 +5,12 @@ import logo from "../../assets/img/Logo.png";
 
 export default function NavBar() {
   const [menuMobie, setMenuMobie] = useState(false);
-  const [windowDimenion, detectHW] = useState({
+  const [windowWidth, setwindowWidth] = useState({
     winWidth: window.innerWidth,
   });
 
   const detectSize = () => {
-    detectHW({
+    setwindowWidth({
       winWidth: window.innerWidth,
     });
   };
@@ -21,7 +21,7 @@ export default function NavBar() {
     return () => {
       window.removeEventListener("resize", detectSize);
     };
-  }, [windowDimenion]);
+  }, [windowWidth]);
 
   const turnOnMenu = () => {
     setMenuMobie(!menuMobie);
@@ -30,10 +30,10 @@ export default function NavBar() {
   return (
     <>
       <div className="py-7 px-9 flex items-center justify-between">
-        <img src={logo} className="w-32 sm:w-52" />
-        {windowDimenion.winWidth < 769 ? (
-          <motion.button
-            className="z-10 hover:bg-slate-200 transition duration-300 ease-in-out rounded-full p-3 "
+        <img src={logo} alt="Hình ảnh" className="w-32 sm:w-52" />
+        {windowWidth.winWidth < 769 ? (
+          <button
+            className="z-20 hover:bg-slate-200 transition duration-300 ease-in-out rounded-full p-3 "
             onClick={turnOnMenu}
           >
             <svg
@@ -45,7 +45,7 @@ export default function NavBar() {
             >
               <path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z" />
             </svg>
-          </motion.button>
+          </button>
         ) : (
           <div>
             <Link
@@ -77,7 +77,7 @@ export default function NavBar() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             onClick={turnOnMenu}
-            className="bg-black fixed top-0 right-0 left-0 bottom-0 bg-opacity-50"
+            className="bg-black fixed top-0 right-0 left-0 bottom-0 bg-opacity-50 z-10"
           ></motion.div>
 
           <motion.div
@@ -85,7 +85,7 @@ export default function NavBar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "-100%" }}
             transition={{ duration: 0.8 }}
-            className="absolute w-3/5 top-0 bottom-0 left-0 bg-rose-200 bg-opacity-90 flex flex-col text-center"
+            className="absolute w-3/5 top-0 bottom-0 left-0 bg-rose-200 bg-opacity-90 flex flex-col text-center z-10"
           >
             <Link
               to="/"

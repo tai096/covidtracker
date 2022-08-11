@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
 import CountrySelector from "../CountrySelector";
 import HightlightCountry from "../HightlightCountry";
 import axios from "axios";
@@ -18,6 +20,24 @@ export default function TrackerPage() {
   const [globalTotalConfirmed, setGlobalTotalConfirmed] = useState(0);
   const [globalTotalDeaths, setGlobalTotalDeaths] = useState(0);
   const [globalNewDeaths, setGlobaNewDeaths] = useState(0);
+
+  const [windowWidth, setwindowWidth] = useState({
+    winWidth: window.innerWidth,
+  });
+
+  const detectSize = () => {
+    setwindowWidth({
+      winWidth: window.innerWidth,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowWidth]);
 
   const notifySuccess = () =>
     toast.success("Cập nhật thành công !", {
@@ -96,7 +116,12 @@ export default function TrackerPage() {
     }
   }, [selectedCountry]);
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -124,9 +149,9 @@ export default function TrackerPage() {
       ) : (
         <>
           <HightlightCountry data={lastData} />
-          <Chart data={selectedData} />
+          {windowWidth.winWidth > 599 ? <Chart data={selectedData} /> : <></>}
         </>
       )}
-    </>
+    </motion.div>
   );
 }

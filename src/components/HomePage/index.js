@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import img from "../../assets/img/whatIsCovid.png";
 
@@ -5,7 +6,13 @@ export default function HomePage() {
   let navigate = useNavigate();
   return (
     <>
-      <div class="px-5 flex flex-col-reverse items-center justify-around lg:flex-row">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        class="px-5 flex flex-col-reverse items-center justify-around lg:flex-row"
+      >
         <div>
           <h1 className="font-bold text-4xl my-7 text-rose-400 lg:text-5xl">
             Covid-19 là gì?
@@ -26,7 +33,7 @@ export default function HomePage() {
           </button>
         </div>
         <img src={img} className="w-4/5 max-w-lg" />
-      </div>
+      </motion.div>
     </>
   );
 }
