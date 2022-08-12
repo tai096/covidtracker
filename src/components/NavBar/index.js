@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "../../assets/img/Logo.png";
 
@@ -23,10 +23,19 @@ export default function NavBar() {
     setMenuMobie(!menuMobie);
   };
 
+  let navigate = useNavigate();
+
   return (
     <>
       <div className="py-7 px-9 flex items-center justify-between">
-        <img src={logo} alt="Hình ảnh" className="w-32 sm:w-52" />
+        <img
+          onClick={() => {
+            navigate("/");
+          }}
+          src={logo}
+          alt="Hình ảnh"
+          className="w-32 sm:w-52 cursor-pointer"
+        />
         {windowWidth < 769 ? (
           <button
             className="z-20 hover:bg-slate-200 transition duration-300 ease-in-out rounded-full p-3 "
@@ -52,15 +61,21 @@ export default function NavBar() {
             </Link>
             <Link
               to="/information"
-              className="mx-14 text-green-900 font-semibold text-lg transition duration-300 ease-in-out hover:text-rose-400 cursor-pointer"
+              className="ml-14 text-green-900 font-semibold text-lg transition duration-300 ease-in-out hover:text-rose-400 cursor-pointer"
             >
               Thông Tin
             </Link>
             <Link
               to="/tracker"
-              className="text-green-900 font-semibold text-lg transition duration-300 ease-in-out hover:text-rose-400 cursor-pointer"
+              className="text-green-900 mx-14 font-semibold text-lg transition duration-300 ease-in-out hover:text-rose-400 cursor-pointer"
             >
               Số Liệu Thống Kê
+            </Link>
+            <Link
+              to="/todo_list"
+              className="text-green-900 font-semibold text-lg transition duration-300 ease-in-out hover:text-rose-400 cursor-pointer"
+            >
+              Todo List
             </Link>
           </div>
         )}
@@ -100,6 +115,12 @@ export default function NavBar() {
               className="text-green-800  font-semibold text-lg transition duration-500 ease-in-out hover:text-white hover:bg-rose-500 py-10 cursor-pointer"
             >
               Số Liệu Thống Kê
+            </Link>
+            <Link
+              to="/todo_list"
+              className="text-green-800  font-semibold text-lg transition duration-500 ease-in-out hover:text-white hover:bg-rose-500 py-10 cursor-pointer"
+            >
+              Todo List
             </Link>
           </motion.div>
         </>

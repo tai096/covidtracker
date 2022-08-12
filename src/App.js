@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import HomePage from "./components/HomePage";
 import Information from "./components/Information";
 import TrackerPage from "./components/TrackerPage";
+import TodoList from "./components/TodoList";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/information" element={<Information />} />
         <Route path="/tracker" element={<TrackerPage />} />
+        <Route path="/todo_list" element={<TodoList />} />
       </Routes>
     </div>
   );
