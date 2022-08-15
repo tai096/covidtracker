@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import CountrySelector from "../CountrySelector";
-import HightlightCountry from "../HightlightCountry";
-import Header from "../Header";
+import CountrySelector from "./CountrySelector";
+import HightlightCountry from "./HightlightCountry";
+import Header from "./Header";
+import Chart from "./Chart";
+import HightlightGlobal from "./HightlightGlobal";
 import Loading from "../Loading";
-import Chart from "../Chart";
-import HightlightGlobal from "../HightlightGlobal";
 
 export default function TrackerPage() {
   const [countries, setCountries] = useState([]);

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
-export default function TodoList() {
+export default function TodoListPage() {
   const [todoList, setTodoList] = useState([]);
   const [job, setJob] = useState("");
   const [editMode, setEditMode] = useState(null);
@@ -11,7 +12,7 @@ export default function TodoList() {
       setTodoList((prev) => [...prev, job]);
       setJob("");
     } else {
-      alert("Lam Viec");
+      notifyError();
     }
   };
   const handleOnChange = (e) => {
@@ -19,7 +20,6 @@ export default function TodoList() {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
     const removeJob = todoList.filter((jobName, jobId) => {
       return jobId !== id;
     });
@@ -42,14 +42,36 @@ export default function TodoList() {
     setEditJobName("");
   };
 
+  const notifyError = () =>
+    toast.error("Chưa nhập công việc !!!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+    });
+
   return (
-    <div className=" w-3/5 mx-auto">
+    <div className="mt-14 mx-5 lg:w-3/4 lg:mx-auto">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+      />
       <div className="flex items-center justify-between">
         <input
           value={job}
           onChange={handleOnChange}
           placeholder="Nhập công việc ...."
-          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-rose-500 w-4/5"
+          className="bg-gray-200 mr-3 appearance-none border-2 border-gray-200 rounded py-2 px-4  focus:outline-none focus:bg-white focus:border-rose-500 w-4/5"
         ></input>
         <button
           onClick={handleOnClick}
@@ -66,7 +88,7 @@ export default function TodoList() {
           >
             {editMode === jobId ? (
               <input
-                className="focus:outline-none w-4/5 py-2 border-gray-300 border-2"
+                className="focus:outline-none focus:bg-gray-100 w-4/5 py-2 "
                 value={editJobName}
                 onChange={handleEditJobName}
               ></input>
@@ -74,12 +96,20 @@ export default function TodoList() {
               <p className="">{jobName}</p>
             )}
             {editMode === jobId ? (
-              <button
-                onClick={() => saveEditedJob(jobId)}
-                className="text-xl p-2 rounded-full hover:bg-slate-200 active:bg-slate-300"
-              >
-                ✔️
-              </button>
+              <>
+                <button
+                  onClick={() => saveEditedJob(jobId)}
+                  className="text-xl p-2 rounded-full hover:bg-slate-200 active:bg-slate-300"
+                >
+                  ✔️
+                </button>
+                <button
+                  onClick={() => setEditMode(null)}
+                  className="text-xl p-2 rounded-full hover:bg-slate-200 active:bg-slate-300"
+                >
+                  ❌
+                </button>
+              </>
             ) : (
               <div>
                 <button

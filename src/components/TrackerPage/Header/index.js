@@ -1,7 +1,9 @@
 import moment from "moment";
 
 export default function Header(props) {
-  const date = props.date.map((item) => moment(item.Date).format("DD/MM/YYYY"));
+  const date =
+    props.date &&
+    props.date.map((item) => moment(item.Date).format("DD/MM/YYYY"));
 
   return (
     <div className="flex flex-col items-center justify-center py-14 ">

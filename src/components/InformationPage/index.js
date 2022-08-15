@@ -10,7 +10,7 @@ import socialDistance from "../../assets/img/socialDistance.png";
 import manyPeople from "../../assets/img/manyPeople.png";
 import report from "../../assets/img/report.png";
 
-export default function Information() {
+export default function InformationPage() {
   const [showContagtion, setShowContagtion] = useState(false);
   const [showSymptoms, setShowSymptoms] = useState(false);
   const [showPrevention, setShowPrevention] = useState(false);
